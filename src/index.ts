@@ -1,4 +1,4 @@
-import {Student} from './student.js';
+import {Student} from './models/student.js';
 
 const students: Student[] = [];
 

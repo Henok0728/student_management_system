@@ -1,42 +1,63 @@
 const prompt = require('prompt-sync')();
 const students =  [];
 
-function addStudent(name,age,major,cgpa,sgpa,year) {
+function addStudent(name,academicYear,birthDate,major,gpa,year) {
     const student = {
+        id: students.length > 0 ? Math.max(...students.map(s => s.id)) + 1 : 1,
         name: name,
-        age: age,
+        academicYear: academicYear,
+        birthDate: birthDate,
         major: major,
-        cgpa: cgpa,
-        sgpa: sgpa,
+        gpa: gpa,
         year: year
     };
     students.push(student);
     }
 function getStudentsByName() {
-    return students.forEach(student => {
-        console.log(student.name);
-    });
-}
-function getStudentsByAge() {
-    return students.forEach(student => {
-        console.log(student.age);
-    });
-}
-function getStudentsByMajor() {
-    return students.forEach(student => {
-        console.log(student.major);
-    });
-}
-function removeStudent(name){
-    const index = students.findIndex(student => student.name === name);
-    if (index !== -1) {
-        students.splice(index, 1);
-        console.log(`Student ${name} removed.`);
+    let count = 0;
+    const name = prompt("Enter student name: ");
+    const filteredStudents = students.filter(student => student.name.toLowerCase() === name.toLowerCase());
+    if (filteredStudents.length > 0) {
+        filteredStudents.forEach(student => {
+            count++;
+            console.log(`ID: ${student.id}`);
+            console.log(`Name: ${student.name}`);
+            console.log(`Academic Year: ${student.academicYear}`);
+            console.log(`Birth Date: ${student.birthDate}`);
+            console.log(`Major: ${student.major}`);
+            console.log(`GPA: ${student.gpa}`);
+            console.log(`Year: ${student.year}`);
+            console.log('-------------------');
+        });
+    console.log(`Total students found: ${count}`);
     } else {
-        console.log(`Student ${name} not found.`);
+        console.log("No students found with that name.");
     }
 }
-
+function getStudentsById() {
+    const id = parseInt(prompt("Enter student ID: "));
+    const student = students.find(s => s.id === id);
+    if (student) {
+        console.log(`ID: ${student.id}`);
+        console.log(`Name: ${student.name}`);
+        console.log(`Academic Year: ${student.academicYear}`);
+        console.log(`Birth Date: ${student.birthDate}`);
+        console.log(`Major: ${student.major}`);
+        console.log(`GPA: ${student.gpa}`);
+        console.log(`Year: ${student.year}`);
+    } else {
+        console.log("No student found with that ID.");
+    }
+}
+function removeStudent(name) {
+    const index = students.findIndex(student => student.name.toLowerCase() === name.toLowerCase());
+    if (index !== -1) {
+        students.splice(index, 1);
+        console.log(`Student with name ${name} has been removed.`);
+    } else { 
+        console.log(`No student found with name ${name}.`);
+    }
+}
 const is_started = true;
 console.log("//////////////////////////////////////////");
 console.log("      Student Management System           ");

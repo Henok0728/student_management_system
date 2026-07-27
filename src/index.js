@@ -67,10 +67,9 @@ while (is_started) {
     console.log("Please select an option");
     console.log("1. Add Student");
     console.log("2. Get Students by Name");
-    console.log("3. Get Students by Age");
-    console.log("4. Get Students by Major");
-    console.log("5. Remove Student");
-    console.log("6. Exit");
+    console.log("3. Get Students by ID");
+    console.log("4. Remove Student");
+    console.log("5. Exit");
     const option = prompt("Enter your option: ");
     switch (option){
         case "1":
@@ -86,7 +85,7 @@ while (is_started) {
             getStudentsByName();
             break; 
         case "3":
-            getStudentsByAge();
+            getStudentsById();
             break;
         case "4":
             getStudentsByMajor();
@@ -95,7 +94,7 @@ while (is_started) {
             const student_removed = prompt("Enter student name to remove: ");
             removeStudent(student_removed);
             break;
-        case "6":
+        case "5":
             console.log("Are u sure you want to exit? (yes/no)");
             const exit_confirmation = prompt("Enter your option: ");
             if (exit_confirmation.toLowerCase() === "yes") {
@@ -106,7 +105,6 @@ while (is_started) {
               console.log("Continuing the Student Management System.");
               continue;
             }
-        
         default:
             console.log("Invalid option. Please try again."); 
     }
